@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="title is-1">
+Sobre nosotros
+</h1>
+
+<h2 class="title is-4">
+  Antílope S. A. es una empresa de Córdoba que se dedica a comercializar
+ productos para el hogar (electrodomésticos, electrónica, etc.). Antílope nació
+ en el año 2003 cuando dos amigos deciden abrir un comercio dedicado a la
+ venta de los productos mencionados en una sede física ubicada en barrio
+ San Vicente.</h2>
+
+ <h3 class="title is-4">
+ Hoy la empresa cuenta con seis sucursales, tres de ellas ubicadas en la
+provincia de Córdoba (Córdoba, Villa María y Río Cuarto), una en Santiago del
+Estero, una en Rosario y una en Mendoza. Cuentan con 38 empleados entre
+las seis sucursales.
+Cuenta con canales de venta a través de distribuidores en
+distintos puntos del país.
+Será un placer para nosotros que usted se contacte y poder ofrecerle nuestro servicios.
+
+</h3>
+
+<h4 class="title">
+
+Antilope S.A.
+</h4>
+
+<div class="notification is-success">
+    Ir a la <a href="{{ url_for('index') }}">pagina de Inicio</a>.
+    Tambien puede ir a la pagina de contacto <a href="{{ url_for('contacto.contacto') }}">aquí</a>
+</div>
+
+{% endblock %}
