@@ -22,12 +22,12 @@ from .bdd.models import db
 def create_app():
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = 'clave'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://dywpawwlwdlqym:ccce5dc00094a37f56e41f6e343da97a748d4b8044b3807fa88b9fd09dc4b643@ec2-3-213-41-172.compute-1.amazonaws.com:5432/d2aa6h1hnuc462'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     #app.config['SECRET_KEY'] = 'clave'
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ddxhvvvaroarao:e04ac6d79b072654f6865f4307f45994a6a50ea8fcf8395a5056a8a4d940833d@ec2-52-203-27-62.compute-1.amazonaws.com:5432/d6mg9bhto8479j'
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://dywpawwlwdlqym:ccce5dc00094a37f56e41f6e343da97a748d4b8044b3807fa88b9fd09dc4b643@ec2-3-213-41-172.compute-1.amazonaws.com:5432/d2aa6h1hnuc462'
     #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SECRET_KEY'] = 'clave'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ddxhvvvaroarao:e04ac6d79b072654f6865f4307f45994a6a50ea8fcf8395a5056a8a4d940833d@ec2-52-203-27-62.compute-1.amazonaws.com:5432/d6mg9bhto8479j'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
 
