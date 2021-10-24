@@ -109,13 +109,14 @@ def mospedidos_post():
             estadoVenta = "Pendiente"
             sucursalVenta = current_user.sucursalUser
 
-            consulta = Pedido.query.filter_by(idClientePedido=cliente).first()
+            consulta = Pedido.query.filter_by(
+                idClientePedido=cliente, estadoPedido="Pendiente").first()
 
-            if consulta.estadoPedido == "Procesado":
+            if not consulta:
                 flash('Los pedidos ya fueron Procesados')
                 return redirect(url_for('mospedidos.mospedidos'))
 
-            if consulta.estadoPedido == "Pendiente":
+            if consulta:
                 consulta = Pedido.query.filter_by(
                     idClientePedido=cliente, estadoPedido="Pendiente").all()
                 total = 0
