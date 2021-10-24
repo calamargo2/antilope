@@ -34,7 +34,7 @@ click==8.0.3
 click-plugins==1.1.1
 cloudpickle==2.0.0
 colorama==0.4.4
-configobj==5.1.0.dev0
+configobj==5.0.6
 constantly==15.1.0
 contextlib2==0.6.0.post1
 cookiecutter==1.7.3
