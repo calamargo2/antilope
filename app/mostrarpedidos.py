@@ -115,53 +115,59 @@ def mospedidos_post():
                 flash('Los pedidos ya fueron Procesados')
                 return redirect(url_for('mospedidos.mospedidos'))
 
-            consulta = Pedido.query.filter_by(idClientePedido=cliente).all()
-            total = 0
-            for consulta in consulta:
-                total = float(consulta.valorPedido) + total
+            if consulta.estadoPedido == "Pendiente":
+                consulta = Pedido.query.filter_by(
+                    idClientePedido=cliente, estadoPedido="Pendiente").all()
+                total = 0
+                for consulta in consulta:
+                    total = float(consulta.valorPedido) + total
 
-            nivelcliente = int(consultacliente.nivelCliente)
+                nivelcliente = int(consultacliente.nivelCliente)
 
-            if nivelcliente == 1:
-                total = total - total * 0.2
-            if nivelcliente == 2:
-                total = total - total * 0.15
-            if nivelcliente == 3:
-                total = total - total * 0.1
-            if nivelcliente == 4:
-                total = total - total * 0.05
-            if nivelcliente == 5:
-                total = total
+                if nivelcliente == 1:
+                    total = total - total * 0.2
 
-            ventaagregar = Venta(idClienteVenta=cliente,
-                                 idUsuarioVenta=idUsuarioVenta,
-                                 diaVenta=diaVenta,
-                                 estadoVenta=estadoVenta,
-                                 sucursalVenta=sucursalVenta, valorVenta=total)
+                if nivelcliente == 2:
+                    total = total - total * 0.15
 
-            db.session.add(ventaagregar)
-            db.session.commit()
+                if nivelcliente == 3:
+                    total = total - total * 0.1
 
-            pedidos = Pedido.query.filter_by(idClientePedido=cliente).all()
-            consulta2 = Venta.query.filter_by(
-                            idClienteVenta=cliente).first()
+                if nivelcliente == 4:
+                    total = total - total * 0.05
 
-            for pedidos in pedidos:
-                pedidos.idVentaPedido = int(consulta2.idVenta)
-                pedidos.estadoPedido = "Procesado"
+                if nivelcliente == 5:
+                    total = total
+
+                ventaagregar = Venta(idClienteVenta=cliente,
+                                     idUsuarioVenta=idUsuarioVenta,
+                                     diaVenta=diaVenta,
+                                     estadoVenta=estadoVenta,
+                                     sucursalVenta=sucursalVenta, valorVenta=total)
+
+                db.session.add(ventaagregar)
                 db.session.commit()
 
-            consulta = Venta.query.filter_by(idClienteVenta=cliente).all()
-            cantidad = Venta.query.filter_by(
-                        idClienteVenta=cliente).count()
+                pedidos = Pedido.query.filter_by(idClientePedido=cliente).all()
+                consulta2 = Venta.query.filter_by(
+                    idClienteVenta=cliente).first()
 
-            consulta = Venta.query.filter_by(idClienteVenta=cliente).all()
-            cantidad = Venta.query.filter_by(
+                for pedidos in pedidos:
+                    pedidos.idVentaPedido = int(consulta2.idVenta)
+                    pedidos.estadoPedido = "Procesado"
+                    db.session.commit()
+
+                consulta = Venta.query.filter_by(idClienteVenta=cliente).all()
+                cantidad = Venta.query.filter_by(
                     idClienteVenta=cliente).count()
 
-            flash('ventas agregada')
-            return render_template('ventafinalizada.html',
-                                   nombre=consulta, cantidad=cantidad)
+                consulta = Venta.query.filter_by(idClienteVenta=cliente).all()
+                cantidad = Venta.query.filter_by(
+                    idClienteVenta=cliente).count()
+
+                flash('ventas agregada')
+                return render_template('ventafinalizada.html',
+                                       nombre=consulta, cantidad=cantidad)
 
 
 @ventafinalizada2.route('/ventafinalizada')
@@ -180,7 +186,7 @@ def ventafinalizada_post():
 
         consulta = Venta.query.filter_by(idVenta=venta).all()
         cantidad = Venta.query.filter_by(
-                            idVenta=venta).count()
+            idVenta=venta).count()
         flash('ventas finalizadas')
         return render_template('mostrarconsultaventas.html',
                                nombre=consulta, cantidad=cantidad)
