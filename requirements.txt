@@ -103,7 +103,6 @@ jupyterlab-pygments==0.1.2
 keyring==23.0.1
 kiwisolver==1.3.2
 lazy-object-proxy==1.6.0
-libfdt==1.6.1
 libtorrent===1.2.14-build-libtorrent-rasterbar-src-libtorrent-rasterbar-1.2.14-bindings-python
 lit==12.0.1.dev0
 lockfile==0.12.2
