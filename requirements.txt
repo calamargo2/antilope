@@ -105,7 +105,7 @@ kiwisolver==1.3.2
 lazy-object-proxy==1.6.0
 lit==13.0.0
 lockfile==0.12.2
-louis==3.19.0
+louis==1.3
 lxml==4.6.3
 Mako==1.1.5
 mallard-ducktype==1.0.2
